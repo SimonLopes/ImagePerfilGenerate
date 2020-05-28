@@ -16,11 +16,11 @@ app.use(bodyParser.json())
 app.use('/content', express.static('./content'))
 
 app.post(["/", "/index"], async (req, res) => {
-    var {userName, fileName, width, height} = req.body
+    var {userName, fileName, width, height, bgColor, textColor, textSize} = req.body
 
     var initialsLetters = userName.split(' ')[0].charAt(0) + userName.split(' ')[1].charAt(0)
 
-    var savingFileName = await robots.image(initialsLetters, fileName, width, height)
+    var savingFileName = await robots.image(initialsLetters, fileName, width, height, bgColor, textColor, textSize)
 
     if(savingFileName.status == true){
         res.send(`${req.protocol}://${req.get('host')}/${_IMAGEPATH}/${savingFileName.return}`)

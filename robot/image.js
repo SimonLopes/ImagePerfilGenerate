@@ -46,6 +46,15 @@ function saveImage(name, canvas) {
     
 }
 
+function randColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 function lightOrDark(color) {
     if (color.match(/^rgb/)) {
         color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/)
@@ -70,14 +79,6 @@ function lightOrDark(color) {
     return hsp > 127.5 ? 'light' : 'dark'
 }
 
-function randColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
 
 function randColorText(textColor, bgBright) {
     var pad = function(num, totalChars) {
