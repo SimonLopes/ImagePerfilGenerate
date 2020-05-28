@@ -6,6 +6,12 @@ V 1.0.0
 - [Símon Lopes](https://www.facebook.com/lopes.nom.is)
 
 ## Quick start
+### For news requests
+
+JSON request:
+
+`URL: ``http://image-perfil-generate.herokuapp.com/`
+
 ### JSON Requests
 |  Request name  | Request required | Type | Default value | Request description |
 | ------------- | ------------- | ------------ | ------------ | ------------ |
