@@ -32,6 +32,6 @@ app.post(["/", "/index"], async (req, res) => {
 
 });
 
-app.listen(_PORT, function() {
+app.listen(process.env.PORT || _PORT, function() {
     console.log(`App escutando na porta ${_PORT}!`)
 })
