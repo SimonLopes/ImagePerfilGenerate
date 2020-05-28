@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require("body-parser")
+const cors = require('cors')
 
 const robots = {
     image: require("./robot/image.js"),
@@ -11,6 +12,7 @@ const {_PORT, _IMAGEPATH} = {
     "_IMAGEPATH":"content"
 }
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/content', express.static('./content'))
