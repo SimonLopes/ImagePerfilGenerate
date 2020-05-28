@@ -1,0 +1,33 @@
+{
+  "name": "perfilgenerate",
+  "version": "1.0.0",
+  "description": "Gerador de imagens default para perfil do usuario",
+  "main": "index.js",
+  "scripts": {
+    "test": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonLopes/ImagePerfilGenerate.git"
+  },
+  "keywords": [
+    "gerador",
+    "imagens",
+    "de",
+    "perfil",
+    "auto",
+    "usuario"
+  ],
+  "author": "Simon Lopes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SimonLopes/ImagePerfilGenerate/issues"
+  },
+  "homepage": "https://github.com/SimonLopes/ImagePerfilGenerate#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "canvas": "^2.6.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security"
+  }
+}
