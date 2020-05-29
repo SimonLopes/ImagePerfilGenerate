@@ -1,5 +1,6 @@
-const { createCanvas } = require('canvas')
+const { registerFont, createCanvas } = require('canvas')
 const fs = require('fs')
+const fonts = fs.readdirSync('./fonts/');
 
 async function robot(
     textUser,
@@ -9,21 +10,30 @@ async function robot(
     bgColor = randColor(),
     textColor = randColorText(randColor(), lightOrDark(bgColor)),
     textSize = width/2,
-    
+    fontFamily = 'BebasNeue'
 ) {
-
-    var canvas = await generateImage(textUser, bgColor, textColor, parseInt(textSize), parseInt(width), parseInt(height))
+    
+    await loadFonts()
+    var canvas = await generateImage(
+        textUser,
+        bgColor,
+        textColor,
+        parseInt(textSize),
+        fontFamily,
+        parseInt(width),
+        parseInt(height)
+    )
     return await saveImage(fileName, canvas)
 }
 
-function generateImage(text, bgColor, textColor, textSize, w, h) {
+function generateImage(text, bgColor, textColor, textSize, fontFamily, w, h) {
     var canvas = createCanvas(w, h)
     var context = canvas.getContext('2d')
     
     context.fillStyle = bgColor
     context.fillRect(0, 0, w, h)
     
-    context.font = `bold ${textSize}pt Arial`
+    context.font = `bold ${textSize}pt ${fontFamily}`
     context.textAlign = 'center'
     context.textBaseline = 'middle'
     context.fillStyle = textColor
@@ -152,6 +162,13 @@ function randColorText(textColor, bgBright) {
     };
     
     return bgBright == 'dark' ? lighterColor(textColor, .2) : darkerColor(textColor, .2)
+}
+
+function loadFonts(){
+    for (let i = 0; i < fonts.length; i++) {
+        registerFont(`./fonts/${fonts[i]}`, {family: `${fonts[i].split('.')[0]}`})        
+    }
+    
 }
 
 module.exports = robot
