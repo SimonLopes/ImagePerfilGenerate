@@ -12,7 +12,7 @@ async function robot(
     
 ) {
 
-    var canvas = await generateImage(textUser, bgColor, textColor, textSize, width, height)
+    var canvas = await generateImage(textUser, bgColor, textColor, parseInt(textSize), parseInt(width), parseInt(height))
     return await saveImage(fileName, canvas)
 }
 
