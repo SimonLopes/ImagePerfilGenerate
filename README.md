@@ -41,6 +41,7 @@ JSON:
 ```
 
 GET:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Simon Lopes&fileName=output&width=300&height=200&bgColor=rgb(40,44,48)&textColor=rgb(40,167,69)&textSize=150&fontFamily=Arial`
 
 `return`: $PROTOCOL://$URL:$PORT/$PATH/output-1590692469.png 
@@ -60,12 +61,14 @@ JSON format:
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User`
 
 `Return`: "NU" (string)
 
 ## `fileName`
 `not required`
+
 `default:` $userName
 
 JSON format:
@@ -77,12 +80,14 @@ JSON format:
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&fileName=output`
 
 `Return`: "output-1590692469.png" (string)
 
 ## `width`
 `not required`
+
 `default:` 512
 
 JSON format:
@@ -94,12 +99,14 @@ JSON format:
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&width=300`
 
 `Return`: 300 (int)
 
 ## `height`
 `not required`
+
 `default:` 512
 
 JSON format:
@@ -111,13 +118,16 @@ JSON format:
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&height=300`
 
 `Return`: 300 (int)
 
 ## `bgColor`
 `not required`
+
 `default:` randColor()
+
 **ONLY RGB(A) COLOR FORMAT ON GET REQUEST**
 
 JSON format:
@@ -136,14 +146,19 @@ OR
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&bgColor=rgba(0,0,0,1)`
 
 `Return`: "#000" (string)
 
 ## `textColor`
+
 `not required`
+
 `default:` `randColorText(randColor(), lightOrDark(bgColor))`
+
 **ONLY RGB(A) COLOR FORMAT ON GET REQUEST**
+
 
 JSON format:
 ```
@@ -161,13 +176,16 @@ OR
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&textColor=rgba(255,255,255,1)`
 
 `Return`: "#fff" (string)
 
 ## `textSize`
 `not required`
+
 `default:` $width/2
+
 `measure:` `pt`
 
 JSON format:
@@ -179,14 +197,18 @@ JSON format:
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&textSize=150`
 
 `Return`: 150pt (int)
 
 ## `fontFamily`
 `not required`
+
 `default:` 'BebasNeue'
+
 `list of fonts`: [fonts](./fonts)
+
 **font names are the name of the file without the extension**
 
 JSON format:
@@ -198,9 +220,10 @@ JSON format:
 ```
 
 GET format:
+
 `http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&fontFamily=Arial`
 
-`Return`: 150pt (int)
+`Return`: "Arial" (string)
 
 ----------------------------------------
 ## Packages
