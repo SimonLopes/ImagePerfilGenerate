@@ -49,7 +49,7 @@ app.get("/perfil", async (req, res) => {
 
 app.post("/perfil", async (req, res) => {
     var {userName, fileName, width, height, bgColor, textColor, textSize, fontFamily} = req.body
-    var response = initializeRobotImage(req, userName, fileName, width, height, bgColor, textColor, textSize, fontFamily)
+    var response = await initializeRobotImage(req, userName, fileName, width, height, bgColor, textColor, textSize, fontFamily)
     res.send(response)
 })
 
