@@ -7,13 +7,15 @@ async function robot(
     fileName = textUser,
     width = 512,
     height = 512,
-    bgColor = randColor(),
-    textColor = randColorText(randColor(), lightOrDark(bgColor)),
+    bgColor = [randColor()],
+    bgGradientLength = bgColor.length,
+    textColor = randColorText(randColor(), lightOrDark(bgColor[0])),
     textSize = width/2,
-    fontFamily = 'BebasNeue'
-) {
+    fontFamily = 'BebasNeue',
     
+) {
     await loadFonts()
+    await generateBackgroundColor(bgColor, bgGradientLength)
     var canvas = await generateImage(
         textUser,
         bgColor,
@@ -29,10 +31,15 @@ async function robot(
 function generateImage(text, bgColor, textColor, textSize, fontFamily, w, h) {
     var canvas = createCanvas(w, h)
     var context = canvas.getContext('2d')
-    
-    context.fillStyle = bgColor
-    context.fillRect(0, 0, w, h)
-    
+    var grd = context.createLinearGradient(0, 0, w, h);
+
+    for (let i = 0; i < bgColor.length; i++) {
+        grd.addColorStop(1/bgColor.length*i, bgColor[i])
+    }
+
+    context.fillStyle = grd
+    context.fillRect(0,0,w,h)
+
     context.font = `bold ${textSize}pt ${fontFamily}`
     context.textAlign = 'center'
     context.textBaseline = 'middle'
@@ -88,7 +95,6 @@ function lightOrDark(color) {
     )
     return hsp > 127.5 ? 'light' : 'dark'
 }
-
 
 function randColorText(textColor, bgBright) {
     var pad = function(num, totalChars) {
@@ -169,6 +175,14 @@ function loadFonts(){
         registerFont(`./fonts/${fonts[i]}`, {family: `${fonts[i].split('.')[0]}`})        
     }
     
+}
+
+function generateBackgroundColor(bgColor, bgGradientLength){
+    for (let i = 0; i < bgGradientLength; i++) {
+        if(!bgColor[i]){
+            bgColor.push(randColor())
+        }
+    }
 }
 
 module.exports = robot

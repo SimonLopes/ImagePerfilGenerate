@@ -19,6 +19,7 @@ async function initializeRobotImage(
     width,
     height,
     bgColor,
+    bgGradientLength,
     textColor,
     textSize,
     fontFamily
@@ -26,7 +27,7 @@ async function initializeRobotImage(
 
     var initialsLetters = userName.split(' ')[0].charAt(0) + userName.split(' ')[1].charAt(0)
 
-    var savingFile = await robots.image(initialsLetters, fileName, width, height, bgColor, textColor, textSize, fontFamily)
+    var savingFile = await robots.image(initialsLetters, fileName, width, height, bgColor, bgGradientLength,textColor, textSize, fontFamily)
 
     if(savingFile.status == true){
         return {'status':true, 'imageUrl':`${req.protocol}://${req.get('host')}/${_IMAGEPATH}/${savingFile.return}`}
@@ -42,14 +43,14 @@ app.use(bodyParser.json())
 app.use('/content', express.static('./content'))
 
 app.get("/perfil", async (req, res) => {
-    var {userName, fileName, width, height, bgColor, textColor, textSize, fontFamily} = req.query
-    var response = await initializeRobotImage(req, userName, fileName, width, height, bgColor, textColor, textSize, fontFamily)
+    var {userName, fileName, width, height, bgColor, bgGradientLength, textColor, textSize, fontFamily} = req.query
+    var response = await initializeRobotImage(req, userName, fileName, width, height, bgColor, bgGradientLength, textColor, textSize, fontFamily)
     res.send(response)
 })
 
 app.post("/perfil", async (req, res) => {
-    var {userName, fileName, width, height, bgColor, textColor, textSize, fontFamily} = req.body
-    var response = await initializeRobotImage(req, userName, fileName, width, height, bgColor, textColor, textSize, fontFamily)
+    var {userName, fileName, width, height, bgColor, bgGradientLength, textColor, textSize, fontFamily} = req.body
+    var response = await initializeRobotImage(req, userName, fileName, width, height, bgColor, bgGradientLength, textColor, textSize, fontFamily)
     res.send(response)
 })
 
