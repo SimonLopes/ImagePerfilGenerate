@@ -15,14 +15,17 @@ JSON request:
 ### Requests Params
 |  Request name  | Request required | Type | Default value | Request description |
 | ------------- | ------------- | ------------ | ------------ | ------------ |
-|  [userName](#username)  |  Required  | string | null | User name for generate image |
-|  [fileName](#filename)  | Not required  | string | Initials text user | Name for saving file (timestamp will always be added at the end) |
-|  [width](#width)  | Not required  | integer | 512 | Image width |
-|  [height](#height)  | Not required  | integer | 512 | Image height |
-|  [bgColor](#bgcolor)  | Not required  | string (hex or rgba) (only RGBA on GET request) | Random color generation | Color for background |
-|  [textColor](#textcolor)  | Not required  | string (hex or rgba) (only RGBA on GET request) | Random color generation | Color for text (brightness set automatically) |
-|  [textSize](#textsize)  | Not required  | integer | width/2 | Text font size |
-|  [fontFamily](#fontfamily)  | Not required  | string | 'BebasNeue' | Font of text |
+|  [userName](#username)  |  Required  | String | null | User name for generate image |
+|  [fileName](#filename)  | Not required  | String | Initials text user | Name for saving file (timestamp will always be added at the end) |
+|  [width](#width)  | Not required  | Integer | 512 | Image width |
+|  [height](#height)  | Not required  | Integer | 512 | Image height |
+|  [bgColor](#bgcolor)  | Not required  | Array (hex or rgba) (only RGBA on GET request) | Random color generation | Color for background |
+|  [bgGradientLength](#bggradientlength)  | Not required  | Integer | 1 | 
+amount of colors in the gradient, if greater than the size of the background color array, missing colors will be generated automatically |
+|  [textColor](#textcolor)  | Not required  | String (hex or rgba) (only RGBA on GET request) | Random color generation | Color for text (brightness set automatically) |
+|  [textSize](#textsize)  | Not required  | Integer | width/2 | Text font size |
+|  [fontFamily](#fontfamily)  | Not required  | String | 'BebasNeue' | Font of text |
+
 
 ### Basic exaple JSON and GET use
 
@@ -134,22 +137,64 @@ JSON format:
 ```
 {
 	"userName":"Name User",
-	"bgColor": "#000"
+	"bgColor": ["#000"]
+	//for gradient:
+	//"bgColor": ["#000", "#fff"]
 }
 
 OR
 
 {
 	"userName":"Name User",
-	"bgColor": "rgba(0,0,0,1)"
+	"bgColor": ["rgba(0,0,0,1)"]
+	//for gradient:
+	//"bgColor": ["rgba(0,0,0,1)", "rgb(255,255,255)"]
+	
 }
 ```
 
 GET format:
 
-`http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&bgColor=rgba(0,0,0,1)`
+`http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&bgColor[]=rgb(0,0,0)`
 
-`Return`: "#000" (string)
+or
+
+`http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&bgColor[]=rgb(0,0,0)&bgColor[]=rgb(255,255,255)`
+
+`Return`: ["#000"] or ["#000", "#fff"] (Array)
+
+## `bgGradientLength`
+`not required`
+
+`default:` 1
+
+**if larger than the background color array size, missing colors will be generated automatically**
+
+JSON format:
+```
+{
+	"userName":"Name User",
+	"bgGradientLength": 4
+}
+
+OR
+
+{
+	"userName":"Name User",
+	"bgColor": ["#000"],
+	"bgGradientLength": 3
+}
+```
+
+GET format:
+
+`http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&bgColor[]=rgba(0,0,0,1)`
+
+or
+
+`http://image-perfil-generate.herokuapp.com/perfil?userName=Name User&bgColor[]=rgb(0,0,0)&bgGradientLength=4`
+
+`Return`: ["#000", randColor(), randColor(), randColor()] (Array)
 
 ## `textColor`
 
