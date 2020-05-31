@@ -36,7 +36,8 @@ JSON:
   "fileName": "output",
   "width": 300,
   "height": 200,
-  "bgColor": "#282c30",
+  "bgColor": ["#282c30"],
+  "bgGradientLength": 1,
   "textColor": "#28a745",
   "textSize": 150,
   "fontFamily": "Arial"
@@ -45,7 +46,7 @@ JSON:
 
 GET:
 
-`http://image-perfil-generate.herokuapp.com/perfil?userName=Simon Lopes&fileName=output&width=300&height=200&bgColor=rgb(40,44,48)&textColor=rgb(40,167,69)&textSize=150&fontFamily=Arial`
+`http://image-perfil-generate.herokuapp.com/perfil?userName=Simon Lopes&fileName=output&width=300&height=200&bgColor[]=rgb(40,44,48)&bgGradientLength=1&textColor=rgb(40,167,69)&textSize=150&fontFamily=Arial`
 
 `return`: $PROTOCOL://$URL:$PORT/$PATH/output-1590692469.png 
 
