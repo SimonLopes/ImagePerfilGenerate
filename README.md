@@ -2,7 +2,7 @@
 ImagePerfilGenerate, is a standard profile image generator for users, images are generated according to the initials of the users names
 
 ## Creation
-V 1.0.0
+V 1.0.0 && V 1.0.1
 - [Símon Lopes](https://www.facebook.com/lopes.nom.is)
 
 ## Quick start
@@ -20,8 +20,7 @@ JSON request:
 |  [width](#width)  | Not required  | Integer | 512 | Image width |
 |  [height](#height)  | Not required  | Integer | 512 | Image height |
 |  [bgColor](#bgcolor)  | Not required  | Array (hex or rgba) (only RGBA on GET request) | Random color generation | Color for background |
-|  [bgGradientLength](#bggradientlength)  | Not required  | Integer | 1 | 
-amount of colors in the gradient, if greater than the size of the background color array, missing colors will be generated automatically |
+|  [bgGradientLength](#bggradientlength)  | Not required  | Integer | 1 | amount of colors in the gradient, if greater than the size of the background color array, missing colors will be generated automatically |
 |  [textColor](#textcolor)  | Not required  | String (hex or rgba) (only RGBA on GET request) | Random color generation | Color for text (brightness set automatically) |
 |  [textSize](#textsize)  | Not required  | Integer | width/2 | Text font size |
 |  [fontFamily](#fontfamily)  | Not required  | String | 'BebasNeue' | Font of text |
